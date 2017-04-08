@@ -31,13 +31,16 @@ type VextexNode struct {
 }
 
 //Graph 图
-type Graph []VextexNode
+type Graph struct {
+	VNum, ENum int          //顶点数目，边数目
+	G          []VextexNode //邻接表
+}
 
 //CreateGraph 创建邻接表
 func CreateGraph(n int) (graph Graph) {
-	graph = make(Graph, n)
+	graph.G = make([]VextexNode, n)
 	for i := 0; i < n; i++ {
-		graph[i] = VextexNode{}
+		graph.G[i] = VextexNode{}
 	}
 	return graph
 }
@@ -47,8 +50,8 @@ func (graph Graph) AddEdge(s, t VextexType, weight EdgeType) {
 	edge := &EdgeNode{v: t, weight: weight}
 
 	//添加边到头部
-	edge.next = graph[s].FisrtEdge
-	graph[s].FisrtEdge = edge
+	edge.next = graph.G[s].FisrtEdge
+	graph.G[s].FisrtEdge = edge
 }
 
 //BuildGraph 通过读取文件建图
