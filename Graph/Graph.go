@@ -1,5 +1,13 @@
 package Graph
 
+import (
+	"bufio"
+	"io"
+	"os"
+	"strconv"
+	"strings"
+)
+
 // EdgeType 边的权值类型
 type EdgeType int
 
@@ -41,4 +49,59 @@ func (graph Graph) AddEdge(s, t VextexType, weight EdgeType) {
 	//添加边到头部
 	edge.next = graph[s].FisrtEdge
 	graph[s].FisrtEdge = edge
+}
+
+//BuildGraph 通过读取文件建图
+//文件格式要求:
+//顶点个数 边数
+//顶点v1 顶点V2 边的权重
+//...
+func BuildGraph(path string) (graph Graph) {
+	f, err := os.Open(path)
+	if err != nil {
+		panic(err)
+	}
+	buf := bufio.NewReader(f)
+
+	i := 0
+	//边的数目
+	var enum int
+	for {
+		line, err := buf.ReadString('\n')
+		if err != nil {
+			if err == io.EOF {
+				return graph
+			}
+			panic(err)
+		}
+		line = strings.TrimSpace(line)
+		data := strings.Split(line, " ")
+		if i == 0 {
+			n, err := strconv.Atoi(data[0])
+			if err != nil {
+				panic(err)
+			}
+			enum, err = strconv.Atoi(data[1])
+			if err != nil {
+				panic(err)
+			}
+			graph = CreateGraph(n)
+		} else if i <= enum {
+			s, err := strconv.Atoi(data[0])
+			if err != nil {
+				panic(err)
+			}
+			t, err := strconv.Atoi(data[1])
+			if err != nil {
+				panic(err)
+			}
+			weight, err := strconv.Atoi(data[2])
+			if err != nil {
+				panic(err)
+			}
+			graph.AddEdge(VextexType(s), VextexType(t), EdgeType(weight))
+		}
+		i++
+	}
+
 }
