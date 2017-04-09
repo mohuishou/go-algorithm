@@ -19,9 +19,9 @@ type VextexDataType int
 
 //EdgeNode 边的节点
 type EdgeNode struct {
-	weight EdgeType   //权值
-	v      VextexType //指向储存该顶点的下标
-	next   *EdgeNode  //指向下一条边
+	Weight EdgeType   //权值
+	V      VextexType //指向储存该顶点的下标
+	Next   *EdgeNode  //指向下一条边
 }
 
 //VextexNode 顶点节点定义
@@ -47,10 +47,10 @@ func CreateGraph(n int) (graph Graph) {
 
 //AddEdge 添加边
 func (graph Graph) AddEdge(s, t VextexType, weight EdgeType) {
-	edge := &EdgeNode{v: t, weight: weight}
+	edge := &EdgeNode{V: t, Weight: weight}
 
 	//添加边到头部
-	edge.next = graph.G[s].FisrtEdge
+	edge.Next = graph.G[s].FisrtEdge
 	graph.G[s].FisrtEdge = edge
 }
 
