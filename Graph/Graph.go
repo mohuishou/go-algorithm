@@ -37,9 +37,10 @@ type Graph struct {
 }
 
 //CreateGraph 创建邻接表
-func CreateGraph(n int) (graph Graph) {
-	graph.G = make([]VextexNode, n)
-	for i := 0; i < n; i++ {
+func CreateGraph(VNum int) (graph Graph) {
+	graph.VNum = VNum
+	graph.G = make([]VextexNode, VNum)
+	for i := 0; i < VNum; i++ {
 		graph.G[i] = VextexNode{}
 	}
 	return graph
@@ -68,7 +69,6 @@ func BuildGraph(path string) (graph Graph) {
 
 	i := 0
 	//边的数目
-	var enum int
 	for {
 		line, err := buf.ReadString('\n')
 		if err != nil {
@@ -84,12 +84,13 @@ func BuildGraph(path string) (graph Graph) {
 			if err != nil {
 				panic(err)
 			}
-			enum, err = strconv.Atoi(data[1])
+			graph = CreateGraph(n)
+
+			graph.ENum, err = strconv.Atoi(data[1])
 			if err != nil {
 				panic(err)
 			}
-			graph = CreateGraph(n)
-		} else if i <= enum {
+		} else if i <= graph.ENum {
 			s, err := strconv.Atoi(data[0])
 			if err != nil {
 				panic(err)

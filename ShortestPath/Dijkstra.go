@@ -3,6 +3,8 @@ package ShortestPath
 import (
 	"errors"
 
+	"container/list"
+
 	"github.com/mohuishou/algorithm/Graph"
 )
 
@@ -12,27 +14,24 @@ const INF = 0xffffff
 //Dijkstra 算法
 //一种求单源最短路径的算法
 func Dijkstra(graph Graph.Graph, s Graph.VextexType, dist []Graph.EdgeType, path []Graph.VextexType) {
-	var (
-		visited []bool //是否已经查看过
-	)
+	visited := make([]bool, graph.VNum)
 	//初始化
 	for i := 0; i < graph.VNum; i++ {
-
 		dist[i] = INF //距离为无穷大
 		path[i] = -1  //没有上一个节点
 		visited[i] = false
 	}
 	path[s] = s
 	dist[s] = 0
-	visited[s] = true //s相邻的顶点已经全部找过了
 
-	//使用chanel实现一个队列操作
-	q := make(chan Graph.VextexType, graph.VNum)
+	//使用list实现一个队列操作
+	q := list.New()
 
 	//将点s入队
-	q <- s
-	for u, ok := <-q; ok == true; {
-
+	q.PushBack(s)
+	for q.Len() != 0 {
+		u := q.Front().Value.(Graph.VextexType)
+		q.Remove(q.Front())
 		//如果该点周围的点已经走过，则无需再走
 		if visited[u] {
 			continue
@@ -48,18 +47,15 @@ func Dijkstra(graph Graph.Graph, s Graph.VextexType, dist []Graph.EdgeType, path
 			v := e.V
 
 			//如果该点尚未走过，并且当前点的距离加上边的距离小于之前该点的距离，那么就更新该点的距离
-			if !visited[v] && dist[v] > dist[u]+e.Weight {
+			if visited[v] == false && dist[v] > dist[u]+e.Weight {
 				dist[v] = dist[u] + e.Weight //更新该点距离
 				path[v] = u                  //更新父节点
-				q <- v                       //将该点入队
+				q.PushBack(v)                //将该点入队
 			}
 			e = e.Next
 		}
 
 	}
-
-	//关闭Chanel队列
-	close(q)
 
 }
 
