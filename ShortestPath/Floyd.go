@@ -11,11 +11,9 @@ func Floyd(graph GraphMatrix.Graph, dist [][]GraphMatrix.EdgeType, path [][]int)
 	for i := 0; i < graph.VNum; i++ {
 		for j := 0; j < graph.VNum; j++ {
 			path[i][j] = -1
+			dist[i][j] = graph.G[i][j]
 		}
 	}
-
-	//使dist等于邻接矩阵
-	dist = graph.G
 
 	for k := 0; k < graph.VNum; k++ {
 		for i := 0; i < graph.VNum; i++ {
@@ -35,4 +33,18 @@ func Floyd(graph GraphMatrix.Graph, dist [][]GraphMatrix.EdgeType, path [][]int)
 		}
 	}
 	return nil
+}
+
+//GetPathForFloyd 获取路径
+func GetPathForFloyd(path [][]int, s, t int) (tPath []int) {
+	tPath = make([]int, 1)
+	tPath[0] = s
+	for {
+		s = path[s][t]
+		if s == -1 || s == t {
+			tPath = append(tPath, t)
+			return tPath
+		}
+		tPath = append(tPath, s)
+	}
 }

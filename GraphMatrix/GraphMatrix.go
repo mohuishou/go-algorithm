@@ -29,6 +29,9 @@ func CreateGraph(n int) (graph Graph) {
 		graph.G[i] = make([]EdgeType, n)
 		for j := 0; j < n; j++ {
 			graph.G[i][j] = INF
+			if i == j {
+				graph.G[i][j] = 0
+			}
 		}
 	}
 	return graph

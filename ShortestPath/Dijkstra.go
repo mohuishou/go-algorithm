@@ -59,8 +59,8 @@ func Dijkstra(graph Graph.Graph, s Graph.VextexType, dist []Graph.EdgeType, path
 
 }
 
-//GetPath 通过路径获得到指定目的节点的路径
-func GetPath(path []Graph.VextexType, t Graph.VextexType) ([]Graph.VextexType, error) {
+//GetPathForDijkstra 通过路径获得到指定目的节点的路径
+func GetPathForDijkstra(path []Graph.VextexType, t Graph.VextexType) ([]Graph.VextexType, error) {
 	tPath := make([]Graph.VextexType, 0)
 	for {
 		tPath = append(tPath, t)
