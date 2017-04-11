@@ -12,6 +12,9 @@ import (
 // EdgeType 边的权值类型
 type EdgeType int
 
+//INF 无穷大
+const INF = 0xfffff
+
 //Graph 图
 type Graph struct {
 	VNum, ENum int          //顶点、边的个数
@@ -24,6 +27,9 @@ func CreateGraph(n int) (graph Graph) {
 	graph.G = make([][]EdgeType, n)
 	for i := 0; i < n; i++ {
 		graph.G[i] = make([]EdgeType, n)
+		for j := 0; j < n; j++ {
+			graph.G[i][j] = INF
+		}
 	}
 	return graph
 }
@@ -72,6 +78,8 @@ func BuildGraph(path string) (graph Graph) {
 			if err != nil {
 				panic(err)
 			}
+
+			//有向图，如果是无向图再添加一条反向边
 			graph.G[s][t] = EdgeType(weight)
 		}
 		i++
