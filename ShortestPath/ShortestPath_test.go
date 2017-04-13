@@ -55,7 +55,7 @@ func TestFolyd(t *testing.T) {
 	Floyd(graph, dist, path)
 
 	fmt.Println("test result：")
-	fmt.Print("source -> dest \t\t")
+	fmt.Print("source -> dest \t")
 	fmt.Print("dist \t\t")
 	fmt.Print("path \t\t\n")
 
@@ -76,4 +76,15 @@ func TestFolyd(t *testing.T) {
 			fmt.Print("\t\t\n")
 		}
 	}
+}
+
+func TestSPFABFS(t *testing.T) {
+	graph := Graph.BuildGraph("Dijkstra.txt")
+	path := make([]Graph.VextexType, graph.VNum)
+	dist := make([]Graph.EdgeType, graph.VNum)
+	err := SPFABFS(graph, 0, dist, path)
+	if err != nil {
+		t.Fatal(err)
+	}
+	fmt.Println(dist)
 }
