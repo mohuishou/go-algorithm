@@ -14,6 +14,7 @@ const INF = 0xffffff
 //Dijkstra 算法
 //一种求单源最短路径的算法
 func Dijkstra(graph Graph.Graph, s Graph.VextexType, dist []Graph.EdgeType, path []Graph.VextexType) {
+	//标记顶点是否曾经入队
 	visited := make([]bool, graph.VNum)
 	//初始化
 	for i := 0; i < graph.VNum; i++ {
