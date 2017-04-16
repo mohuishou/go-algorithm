@@ -77,14 +77,3 @@ func TestFolyd(t *testing.T) {
 		}
 	}
 }
-
-func TestSPFABFS(t *testing.T) {
-	graph := Graph.BuildGraph("Dijkstra.txt")
-	path := make([]Graph.VextexType, graph.VNum)
-	dist := make([]Graph.EdgeType, graph.VNum)
-	err := SPFABFS(graph, 0, dist, path)
-	if err != nil {
-		t.Fatal(err)
-	}
-	fmt.Println(dist)
-}
