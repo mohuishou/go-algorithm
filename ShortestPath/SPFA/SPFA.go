@@ -51,6 +51,9 @@ func Init(g Graph.Graph, S Graph.VextexType, Dist []Graph.EdgeType, Path []Graph
 
 //DFS spfa算法dfs实现
 func DFS(u Graph.VextexType) error {
+	if isInit != true {
+		return errors.New("请先执行SPFA.Init方法")
+	}
 	visited[u] = true
 	e := graph.G[u].FisrtEdge
 	for e != nil {
