@@ -4,4 +4,4 @@
 
 | 标题 | Github    | 博客                                                                                              |
 | ---- | --------- | ------------------------------------------------------------------------------------------------- |
-| 链表 | [list](./01_list) | [Go 数据结构与算法 01-链表(深入理解 container/list&LRU 缓存的实现)](https://lailin.xyz/list.html) |
+| 链表 | [list](./01_list) | [Go 数据结构与算法 01-链表(深入理解 container/list&LRU 缓存的实现)](https://lailin.xyz/post/list.html) |
