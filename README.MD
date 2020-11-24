@@ -5,4 +5,6 @@
 | 标题 | Github    | 博客                                                                                              |
 | ---- | --------- | ------------------------------------------------------------------------------------------------- |
 | 链表 | [list](./01_list) | [Go 数据结构与算法 01-链表(深入理解 container/list&LRU 缓存的实现)](https://lailin.xyz/post/list.html) |
-| 数组 | [array](./02_array) | [Go数据结构与算法02-数组: 深入理解 slice](https://lailin.xyz/post/array.html) |
+| 数组 | [array](./02_array) | [Go数据结构与算法02-数组: 深入理解 slice](https://lailin.xyz/post/array.html) <br />[Go数据结构与算法03-数组下: 使用 GDB 调试 Golang 代码](https://lailin.xyz/post/array_2.html) |
+| 栈 | [stack](./03_stack) | [Go数据结构与算法04-栈上: 如何实现一个计算器](https://lailin.xyz/post/stack.html)<br />[Go数据结构与算法05-栈下: 深入理解 defer](https://lailin.xyz/post/defer.html) |
+
